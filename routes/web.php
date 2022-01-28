@@ -12,9 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('contents.toplogin');
+})->middleware('guest');
 
-Auth::routes();
+Auth::routes([
+    'register' => true,  // ユーザー登録用のルート。デフォルトは true
+    'reset'    => false,  // パスワードリセット用のルート。デフォルトは true
+    'confirm'  => false,  // パスワード確認用のルート。Auth\ConfirmPasswordController が存在すればデフォルトは true
+    'verify'   => false,  // メール確認用のルート。デフォルトは false
+]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/quizzes', 'QuizController')
+    ->middleware('auth');
