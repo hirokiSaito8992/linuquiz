@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     /**
      * Get the login username to be used by the controller.
-     *
+     *オーバーライドさせている
      * @return string
      */
     public function username()
@@ -49,6 +49,7 @@ class LoginController extends Controller
         return 'name';
     }
 
+    //ログイン後にリダイレクトさせる
     public function redirectPath()
     {
         return '/quizzes';

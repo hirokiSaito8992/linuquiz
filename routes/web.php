@@ -11,10 +11,12 @@
 |
 */
 
+//トップ画面ルート
 Route::get('/', function () {
     return view('contents.toplogin');
 })->middleware('guest');
 
+//認証関係ルート
 Auth::routes([
     'register' => true,  // ユーザー登録用のルート。デフォルトは true
     'reset'    => false,  // パスワードリセット用のルート。デフォルトは true
@@ -22,5 +24,11 @@ Auth::routes([
     'verify'   => false,  // メール確認用のルート。デフォルトは false
 ]);
 
+//クイズ関係のメインルート
 Route::resource('/quizzes', 'QuizController')
-    ->middleware('auth');
+    ->middleware('auth')->except(['show', 'update', 'destroy', 'edit']);
+
+
+Route::get('/quizzes/exercise', function () {
+    return view('contents.exercise');
+});
