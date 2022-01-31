@@ -22,6 +22,8 @@
 
 
                     <form action="" method="POST">
+                        {{-- input type:hidden でquestionIDを送信する --}}
+                        @csrf
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" id="answers">
                             <label class="form-check-label" for="answers">
