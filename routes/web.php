@@ -14,7 +14,7 @@
 //トップ画面ルート
 Route::get('/', function () {
     return view('contents.toplogin');
-})->middleware('guest');
+})->name('top')->middleware('guest');
 
 //認証関係ルート
 Auth::routes([
@@ -26,9 +26,9 @@ Auth::routes([
 
 //クイズ関係のメインルート
 Route::resource('/quizzes', 'QuizController')
-    ->middleware('auth')->except(['show', 'update', 'destroy', 'edit']);
+    ->middleware('auth')->except(['show', 'update', 'destroy',]);
 
-
+//クイズ演習画面ルート
 Route::get('/quizzes/exercise', function () {
     return view('contents.exercise');
 });

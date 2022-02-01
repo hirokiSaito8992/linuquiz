@@ -15,7 +15,7 @@ class CreateChoisesTable extends Migration
     {
         Schema::create('choises', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('choise'); //選択肢
+            $table->string('choise')->nullable(); //選択肢
             $table->boolean('correct_answer'); //正否(trueかfalseで判定する)
             $table->biginteger('question_id')->unsigned(); //外部キー
             $table->foreign('question_id')->references('id')->on('questions');

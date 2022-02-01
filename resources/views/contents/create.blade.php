@@ -14,18 +14,19 @@
                     @include('layouts.error_list')
                     <h5 class="h2 card-title text-center mt-3">問題を投稿する</h5>
                     <div class="card-text mt-3">
-                        <form action="" method="post">
+                        <form action="{{ route('quizzes.store') }}" method="POST">
                             @csrf
                             <p class="p-1 mb-0 font-weight-bold">試験科目</p>
 
-                            <div class="form-group form-check-inline mb-0">
-                                <input type="checkbox" class="form-check-input" id="exam-subjects1" name="exam-subjects" value="{{ old('exam-subjects') }}">
-                                <label class="form-check-label" for="exam-subjects">Linuc201</label>
+                            {{-- 順次 Linuc201 Linuc102 等の項目を増やす予定 --}}
+
+                            <div class="form-check-inline mb-0">
+                                <input type="checkbox" class="form-check-input" id="exam-subjects" name="exam-subjects" value="2">
+                                <label class="form-check-label" for="exam-subjects2">Linuc202</label>
                             </div>
-                            <div class="form-group form-check-inline mb-0">
-                                <input type="checkbox" class="form-check-input" id="exam-subjects2" name="exam-subjects" value="{{ old('exam-subjects') }}">
-                                <label class="form-check-label" for="exam-subjects">Linuc202</label>
-                            </div>
+
+
+                            {{-- 順次 Linuc201 Linuc102 に応じて分野名もそれに対応したものを用意する --}}
 
                             <div class="form-group">
                                 <label for="subject-field" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
@@ -46,7 +47,7 @@
                                 <textarea class="form-control" id="problem-statement" name="problem-statement"  value="{{ old('problem-statement') }}" rows="4" placeholder="100文字以内で入力してください" required></textarea>
                             </div>
 
-                            <p class=" p-1 mb-0 font-weight-bold">選択肢 <span class=" mb-1 badge badge-danger align-middle">※選択肢1は必ず入力してください</span> </p>
+                            <p class=" p-1 mb-0 font-weight-bold">選択肢 <span class=" pl-0 pb-0 mb-1 badge badge-danger align-middle">※選択肢1は必ず入力してください</span> </p>
                             
                             <div class="form-group">
                                 <input type="text" class="form-control" id="choice1" name="choice1" value="{{ old('choice1') }}" placeholder="選択肢1">
@@ -61,21 +62,21 @@
                                 <input type="text" class="form-control" id="choice4" name="choice4" value="{{ old('choice4') }}" placeholder="選択肢4">
                             </div>
 
-                            <p class=" p-1 mb-0 font-weight-bold">解答  <span class=" mb-1 badge badge-danger align-middle">※1つはチェックしてください</span> </p>
+                            <p class=" p-1 mb-0 font-weight-bold">解答  <span class=" pl-0 pb-0 mb-1 badge badge-danger align-middle">※1つはチェックしてください</span> </p>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="answer1" name="answer1" value="{{ old('answer1') }}" checked>
+                                <input type="checkbox" class="form-check-input" id="answer1" name="answers[]" value="choice1" checked>
                                 <label class="form-check-label" for="answer1">選択肢1</label>
                             </div>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="answer2" name="answer2" value="{{ old('answer2') }}">
+                                <input type="checkbox" class="form-check-input" id="answer2" name="answers[]" value="choice2">
                                 <label class="form-check-label" for="answer2">選択肢2</label>
                             </div>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="answer3" name="answer3" value="{{ old('answer3') }}">
+                                <input type="checkbox" class="form-check-input" id="answer3" name="answers[]" value="choice3">
                                 <label class="form-check-label" for="answer3">選択肢3</label>
                             </div>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="answer4" name="answer4" value="{{ old('answer4') }}">
+                                <input type="checkbox" class="form-check-input" id="answer4" name="answers[]" value="choice4">
                                 <label class="form-check-label" for="answer4">選択肢4</label>
                             </div>
 
