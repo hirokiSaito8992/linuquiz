@@ -24,11 +24,21 @@ Auth::routes([
     'verify'   => false,  // メール確認用のルート。デフォルトは false
 ]);
 
-//クイズ関係のメインルート
-Route::resource('/quizzes', 'QuizController')
-    ->middleware('auth')->except(['show', 'update', 'destroy',]);
 
-//クイズ演習画面ルート
-Route::get('/quizzes/exercise', function () {
-    return view('contents.exercise');
+Route::prefix('quizzes')->group(function () {
+
+    //クイズ関係のメインルート
+    Route::name('quizzes.')->group(function () {
+        Route::resource('/', 'QuizController')
+            ->middleware('auth')->except(['show', 'update', 'destroy',]);
+    });
+    //クイズ演習画面ルート
+    Route::get('/exercise', function () {
+        return view('contents.exercise');
+    });
+});
+
+//ユーザ管理ルート
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/{name}', 'UserController@show')->name('show');
 });

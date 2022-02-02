@@ -22,13 +22,11 @@ class QuizController extends Controller
 
     public function store(Request $request) //問題投稿画面で送られてきたパラメータをデータベースに格納する
     {
-
         $questions = new Question; //問題文を格納するモデルインスタンス
-
         $questions->name = $request->input('problem-statement'); //試験名
         $questions->user_id = $request->user()->id; //認証済みユーザIDを取得
         $questions->category_id = $request->input('subject-field'); //各分野
-        $questions->save();
+        $questions->save(); //データベースに反映
 
         $alternatives1 = $request->input('choice1'); //選択肢1
         $alternatives2 = $request->input('choice2'); //選択肢2

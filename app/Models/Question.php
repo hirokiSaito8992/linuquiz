@@ -13,4 +13,14 @@ class Question extends Model
     {
         return $this->hasMany(Choise::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function incorrectAnswer() //ユーザが間違った問題を集計する 多対多
+    {
+        return $this->belongsToMany(User::class, 'user_question');
+    }
 }
