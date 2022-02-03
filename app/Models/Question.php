@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $table = 'questions';
-    protected $fillable = ['name', 'user_id', 'category_id'];
+    protected $fillable = ['id', 'name', 'user_id', 'category_id'];
 
-    public function choise()
+    public function choises()
     {
         return $this->hasMany(Choise::class);
     }

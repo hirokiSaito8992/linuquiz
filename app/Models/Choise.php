@@ -10,7 +10,7 @@ class Choise extends Model
     protected $fillable = ['choise', 'corrent_answer', 'question_id'];
 
 
-    public function question()
+    public function questions()
     {
         return $this->belongsTo(Question::class);
     }

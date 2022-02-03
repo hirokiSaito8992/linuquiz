@@ -6,12 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    public function question()
+
+    protected $table = 'users';
+
+    protected $fillable = [
+        'id',
+        'name',
+    ];
+
+    public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class, 'user_id', 'id');
     }
 
-    public function incorrectAnswer() //ユーザが間違った問題を集計する 多対多
+    public function incorrectAnswers() //ユーザが間違った問題を集計する 多対多
     {
         return $this->belongsToMany(Question::class, 'user_question');
     }
@@ -19,7 +27,7 @@ class User extends Model
     /**
      * nameに基づいてユーザを検索し、モデル型で値を返す
      * @param $name
-     * @return Model 
+     * @return Model インスタンス
      */
     public  function get_user($name)
     {
