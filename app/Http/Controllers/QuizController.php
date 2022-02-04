@@ -19,7 +19,9 @@ class QuizController extends Controller
 
     public function create()
     {
-        return view('contents.create'); //問題投稿画面へ
+        $small_categories = SmallCategory::all();
+
+        return view('contents.create', compact('small_categories')); //問題投稿画面へ
     }
 
     public function store(Request $request) //問題投稿画面で送られてきたパラメータをデータベースに格納する

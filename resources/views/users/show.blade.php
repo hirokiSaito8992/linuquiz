@@ -17,11 +17,11 @@
                 <div class="card-body">
                     <div class="card-columns">
                         {{-- リレーションで問題テーブルを取得している --}}
-                        @foreach($users->questions as $question)
+                        @foreach($users->questions as $index => $question)
                         <div class="card">
                             <div class="text-center">
                                 <div class="card-header">
-                                    Question.{{ $question->id }}
+                                    Question.{{ $index + 1 }}
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text">
