@@ -64,7 +64,7 @@
 
                             <p class=" p-1 mb-0 font-weight-bold">解答  <span class=" pl-0 pb-0 mb-1 badge badge-danger align-middle">※1つはチェックしてください</span> </p>
                             <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="answer1" name="answers[]" value="choice1" checked>
+                                <input type="checkbox" class="form-check-input" id="answer1" name="answers[]" value="choice1" checked required>
                                 <label class="form-check-label" for="answer1">選択肢1</label>
                             </div>
                             <div class="form-group form-check">

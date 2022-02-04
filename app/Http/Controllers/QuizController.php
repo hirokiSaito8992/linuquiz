@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Question;
 use App\Models\Choise;
+use App\Models\SmallCategory;
+use App\Models\LargeCategory;
 
 use Illuminate\Http\Request;
 
@@ -59,5 +61,34 @@ class QuizController extends Controller
         }
 
         return redirect()->route('quizzes.index')->with('flash_message', '投稿が完了しました');
+    }
+
+    /**
+     * 問題を編集するためのアクションメソッド
+     * 問題と対応した選択肢をeditブレードに値を渡す
+     */
+    public function edit($question_id)
+    {
+        //idに該当した問題モデルを取得
+        $questions = Question::where('id', $question_id)->first();
+
+        //idに該当した選択肢を取得する
+        $choises = $questions->choises;
+
+        //question 1件に対してカテゴリーを取得する(small_categoryテーブル)
+        $category = $questions->category;
+
+        //少カテゴリー(分野)を取得する
+        $all_categories = SmallCategory::all();
+
+        //大カテゴリー(試験名)を取得する
+        $large_category = LargeCategory::where('id', $questions->category->large_categories_id)->first();
+
+        return view('contents.edit', compact('questions', 'choises', 'category', 'all_categories', 'large_category'));
+    }
+
+    public function update(Request $request, $question_id)
+    {
+        dd($question_id, $request);
     }
 }

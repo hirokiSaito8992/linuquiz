@@ -30,15 +30,17 @@ Route::prefix('quizzes')->group(function () {
     //クイズ関係のメインルート
     Route::name('quizzes.')->group(function () {
         Route::resource('/', 'QuizController')
-            ->middleware('auth')->except(['show', 'update', 'destroy',]);
+            ->middleware('auth')->except(['show', 'edit', 'update', 'destroy',]);
+        Route::get('/{question_id}/edit', 'QuizController@edit')->middleware('auth')->name('edit');
+        Route::post('/{question_id}/update', 'QuizController@update')->middleware('auth')->name('update');
     });
     //クイズ演習画面ルート
     Route::get('/exercise', function () {
         return view('contents.exercise');
-    });
+    })->middleware('auth');
 });
 
 //ユーザ管理ルート
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/{name}', 'UserController@show')->name('show');
+    Route::get('/{name}', 'UserController@show')->middleware('auth')->name('show');
 });

@@ -27,7 +27,7 @@
                                     <p class="card-text">
                                         {{$question->name}}
                                     </p>
-                                    <button class="btn btn-outline-info btn-sm">編集する</button>
+                                    <a href="{{ route('quizzes.edit',$question->id) }}" class="btn btn-outline-info btn-sm px-1" tabindex="-1" role="button" aria-disabled="true"><p class="h6 mb-0">問題を編集する</p></a>
                                 </div>
                             </div>
                         </div>
