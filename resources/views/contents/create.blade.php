@@ -19,10 +19,12 @@
                             <p class="p-1 mb-0 font-weight-bold">試験科目</p>
                             {{-- 順次 Linuc201 Linuc102 等の項目を増やす予定 --}}
 
+                            @foreach($large_categories as $largeCategory)
                             <div class="form-check-inline mb-0">
-                                <input type="checkbox" class="form-check-input" id="exam-subjects" name="exam-subjects" value="4">
-                                <label class="form-check-label" for="exam-subjects2">Linuc202</label>
+                                <input type="checkbox" class="form-check-input" id="exam-subjects" name="exam-subjects" value="{{ $largeCategory->id }}">
+                                <label class="form-check-label" for="exam-subjects">{{ $largeCategory->name }}</label>
                             </div>
+                            @endforeach
 
                             {{-- 順次 Linuc201 Linuc102 に応じて分野名もそれに対応したものを用意する --}}
 
