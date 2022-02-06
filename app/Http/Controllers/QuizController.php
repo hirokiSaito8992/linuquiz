@@ -140,7 +140,18 @@ class QuizController extends Controller
                 }
             }
         }
-
         return redirect()->route('users.show', ['name' => $user->name])->with('flash_message', '問題の更新が成功しました');
+    }
+
+    /**
+     * 問題(Questionsテーブル)と選択肢(Choisesテーブル)から対象を削除する
+     */
+    public function destroy($question_id)
+    {
+        $choises = Choise::where('question_id', $question_id)->delete(); //外部キー制約の関係で選択肢から削除する
+        $questions = Question::find($question_id);
+        $questions->delete();
+
+        return redirect()->route('users.show', ['name' => $questions->user->name])->with('flash_message', '問題の削除が成功しました');
     }
 }

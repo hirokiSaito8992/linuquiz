@@ -28,6 +28,12 @@
                                         {{$question->name}}
                                     </p>
                                     <a href="{{ route('quizzes.edit',$question->id) }}" class="btn btn-outline-info btn-sm px-1" tabindex="-1" role="button" aria-disabled="true"><p class="h6 mb-0">問題を編集する</p></a>
+                                    <div>
+                                        <form action="{{ route('quizzes.destroy',['question_id' => $question->id]) }}" method="POST" id="delete_{{ $question->id }}">
+                                            @csrf
+                                            <a href="#" class="btn btn-outline-danger btn-sm px-1" data-id="{{ $question->id }}" onclick="deletePost(this);"><p class="h6 mb-0">問題を削除する</p></a>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -38,6 +44,17 @@
         </div>
     </div>
 </div>
+
+<script>
+
+function deletePost(e){
+    'use strict';
+    if(confirm('本当に削除してもいいですか?')){
+        document.querySelector('#delete_' + e.dataset.id).submit();
+    }
+}
+
+</script>
 
 
 @endsection

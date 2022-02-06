@@ -33,6 +33,7 @@ Route::prefix('quizzes')->group(function () {
             ->middleware('auth')->except(['show', 'edit', 'update', 'destroy',]);
         Route::get('/{question_id}/edit', 'QuizController@edit')->middleware('auth')->name('edit');
         Route::post('/{question_id}/update', 'QuizController@update')->middleware('auth')->name('update');
+        Route::post('/{question_id}/destroy', 'QuizController@destroy')->middleware('auth')->name('destroy');
     });
     //クイズ演習画面ルート
     Route::get('/exercise', function () {
