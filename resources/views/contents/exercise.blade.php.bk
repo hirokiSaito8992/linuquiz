@@ -9,7 +9,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-10">
-            
             @foreach($question as $index => $value)
             
             <div class="mt-3">
@@ -25,7 +24,7 @@
                     <form action="" method="POST">
                         {{-- input type:hidden でquestionIDを送信する --}}
                         @csrf
-                        @foreach($choices as $key => $val)
+                        @foreach($choises as $key => $val)
                             @foreach($val as $k => $v)
                             
                             <div class="form-check mb-2">
