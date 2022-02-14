@@ -36,6 +36,7 @@ Route::prefix('quizzes')->group(function () {
         Route::post('/{question_id}/destroy', 'QuizController@destroy')->middleware('auth')->name('destroy');
 
         Route::post('/exercise', 'QuizController@exercise')->middleware('auth')->name('exercise');
+        Route::post('/exercise/confirm', 'QuizController@confirm')->middleware('auth')->name('exercise.confirm');
     });
 });
 

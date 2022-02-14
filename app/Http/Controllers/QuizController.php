@@ -176,9 +176,10 @@ class QuizController extends Controller
         foreach ($smallCategories as $smallcategory) {
             $query->orwhere('questions.category_id', $smallcategory);
         }
-        $query->where('large_categories_id', $examSubject);
+        $query->where('large_categories_id', $examSubject)->orderBy('category_id', 'asc');
 
         $question = $query->get(); //選択した分野の問題を格納
+
 
         //得られた各問題から、対応する選択肢を取得していく
         //また、その結果をquestionオブジェクトに挿入する
@@ -188,5 +189,11 @@ class QuizController extends Controller
         }
 
         return view('contents.exercise', compact('question'));
+    }
+
+    public function confirm(Request $request)
+    {
+        var_dump($request->has('question1'));
+        var_dump($request->has('question2'));
     }
 }
