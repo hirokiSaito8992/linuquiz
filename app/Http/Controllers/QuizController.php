@@ -193,7 +193,13 @@ class QuizController extends Controller
 
     public function confirm(Request $request)
     {
-        var_dump($request->has('question1'));
-        var_dump($request->has('question2'));
+        $data = $request->input('select_answer');
+        $data = json_decode($data);
+        // dd($data);
+        foreach ($data as $key => $v) {
+            dd($key, $v);
+        }
+
+        return view('contents.exercise_confirm', compact('data'));
     }
 }
