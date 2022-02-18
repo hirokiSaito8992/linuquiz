@@ -55,7 +55,7 @@ $(function(){
         //Laravelの使用上CSRF対策でcsrfトークンをPOST通信の際に送る必要がある
         const csrf = document.getElementById('csrf-token').content;
 
-        $('<form/>', {action: "/quizzes/exercise/confirm" , method: "post"})
+        $('<form/>', {action: "/quizzes/exercise/result" , method: "post"})
         .append($('<input/>',{type: "hidden", name: "_token", value: csrf}))
         .append($('<input/>',{type: "hidden", name: "select_answer", value: JSON.stringify(ansResult)}))
         .appendTo(document.body)

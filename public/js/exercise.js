@@ -178,7 +178,7 @@ $(function () {
     //Laravelの使用上CSRF対策でcsrfトークンをPOST通信の際に送る必要がある
     var csrf = document.getElementById('csrf-token').content;
     $('<form/>', {
-      action: "/quizzes/exercise/confirm",
+      action: "/quizzes/exercise/result",
       method: "post"
     }).append($('<input/>', {
       type: "hidden",

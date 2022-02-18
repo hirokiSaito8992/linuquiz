@@ -11,6 +11,7 @@ use App\Models\SmallCategory;
 use App\Models\LargeCategory;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -19,6 +20,9 @@ class QuizController extends Controller
         return view('contents.index'); //問題選択画面へ
     }
 
+    /**
+     * 問題を作成するためのフォームに送るメソッド
+     */
     public function create()
     {
         $small_categories = SmallCategory::all();
@@ -88,6 +92,9 @@ class QuizController extends Controller
         return view('contents.edit', compact('questions', 'choises', 'category', 'all_categories', 'large_category'));
     }
 
+    /**
+     * 編集した問題をデータベースに格納するメソッド
+     */
     public function update(Request $request, $question_id)
     {
         $questions = Question::find($question_id);
@@ -160,7 +167,6 @@ class QuizController extends Controller
 
         //チェックボックスでチェックされた値により、questionsテーブルに検索を掛けて、データを取得する
 
-
         $smallCategories = $request->input('smallcategories'); //フォーム送信から分野を取得
         $examSubject = $request->input('exam-subject'); //フォーム送信から試験名を取得
 
@@ -180,7 +186,6 @@ class QuizController extends Controller
 
         $question = $query->get(); //選択した分野の問題を格納
 
-
         //得られた各問題から、対応する選択肢を取得していく
         //また、その結果をquestionオブジェクトに挿入する
         foreach ($question as $value) {
@@ -191,15 +196,55 @@ class QuizController extends Controller
         return view('contents.exercise', compact('question'));
     }
 
-    public function confirm(Request $request)
+    public function result(Request $request)
     {
         $data = $request->input('select_answer');
-        $data = json_decode($data);
-        // dd($data);
-        foreach ($data as $key => $v) {
-            dd($key, $v);
+        $data = json_decode($data); //JSON形式でデータが入っているのでデコードして配列(Array)に戻す
+        $data_collection = collect($data);
+
+        $data_keys = $data_collection->keys();
+        $data_keys = preg_replace("/[a-z]/", "", $data_keys); //[question_id]部分を取り除く
+        $data_keys = preg_replace("/\[|\]/", "", $data_keys);
+        $data_keys = preg_replace("/\"/", "", $data_keys);
+        $data_keys = preg_split('/,/', $data_keys); //question_idを数値に変換したものを再び配列に戻している
+
+        $data_values = $data_collection->values()->toArray();
+
+        //questionid(Key値)を数値に変換したものを再びquestion_idと回答に統合
+        $data_answer = collect(array_combine($data_keys, $data_values));
+
+        //全問題数
+        $data_question_total = $data_answer->count();
+
+        //データベースと回答を参照して正誤率を計算する
+        foreach ($data_answer as $key => $value) {
+            $correct = 0; //正解数
+            $discorrect = 0; //不正解数
+
+            $choises = Choise::select('correct_answer')->where('question_id', $key)->get(); //question_idに基づいてDBから解答を取得する
+            $choises_ans = $choises->where('correct_answer', '1')->count(); //その問題の正解数
+            $value_ans = array_count_values($value);
+
+            $select_ans = 0; //回答を選択し、合っていたときにカウントする
+            foreach ($value_ans as $k => $v) {
+                if ($k === 1) {
+                    $select_ans = $v;
+                }
+            }
+
+            //不正解を集計して、間違えた問題として、テーブルに保存する
+            if (in_array("0", $value) && ($select_ans !== $choises_ans)) {
+                $discorrect++;
+                $incorrectAns = new Question;
+                $incorrectAns->incorrectAnswer()->attach(
+                    ['user_id' => Auth::id()],
+                    ['question_id' => $key]
+                );
+            } else {
+                $correct++;
+            }
         }
 
-        return view('contents.exercise_confirm', compact('data'));
+        return view('contents.exercise_result', compact('data_question_total', 'correct', 'discorrect'));
     }
 }

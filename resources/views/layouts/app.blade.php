@@ -20,6 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -29,8 +30,6 @@
 </head>
 
 <body>
-    <div id="app">
-
         {{-- フラッシュメッセージ --}}
         @if(session('flash_message'))
             <div class="flash_message bg-success text-center py-3 my-0">
@@ -48,10 +47,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
     
         @yield('content')
-    </div>
 
-    
-    
 </body>
 
 </html>

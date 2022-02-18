@@ -34,7 +34,7 @@
                 </div>
             </div>
             @endforeach
-            <button id="endExercise" class="btn btn-primary">演習を終了する</button>
+            <button id="endExercise" class="btn btn-primary btn-lg btn-block mb-5">演習を終了する</button>
         </div>
     </div>
 </div>
