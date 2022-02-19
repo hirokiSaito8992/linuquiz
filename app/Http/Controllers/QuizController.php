@@ -62,9 +62,7 @@ class QuizController extends Controller
             $choise->correct_answer = false; //基本的にfalseにしておいて、正解があればtrueに変更する
 
             foreach ($answers as $index => $ans) {
-                if ($key === $ans) {
-                    $choise->correct_answer = true;
-                }
+                ($key === $ans) && $choise->correct_answer = true;
             }
             $choise->save();
         }
@@ -122,9 +120,7 @@ class QuizController extends Controller
         foreach ($alternatives as $key => $item) { //答えと入力された選択肢を合体させている
             foreach ($item as $key2 => $value) {
                 foreach ($answers as $index => $val) {
-                    if ($key === $val) {
-                        $value = true;
-                    }
+                    ($key === $val) && $value = true;
                     $altAns = array_merge($altAns, array($key => [$key2 => $value])); //値を変更したものを再び連想配列に戻す
                 }
             }
@@ -216,10 +212,10 @@ class QuizController extends Controller
         //全問題数
         $data_question_total = $data_answer->count();
 
+        $correct = 0; //正解数
+        $discorrect = 0; //不正解数
         //データベースと回答を参照して正誤率を計算する
         foreach ($data_answer as $key => $value) {
-            $correct = 0; //正解数
-            $discorrect = 0; //不正解数
 
             $choises = Choise::select('correct_answer')->where('question_id', $key)->get(); //question_idに基づいてDBから解答を取得する
             $choises_ans = $choises->where('correct_answer', '1')->count(); //その問題の正解数
@@ -227,13 +223,11 @@ class QuizController extends Controller
 
             $select_ans = 0; //回答を選択し、合っていたときにカウントする
             foreach ($value_ans as $k => $v) {
-                if ($k === 1) {
-                    $select_ans = $v;
-                }
+                $k === 1 && $select_ans = $v;
             }
 
             //不正解を集計して、間違えた問題として、テーブルに保存する
-            if (in_array("0", $value) && ($select_ans !== $choises_ans)) {
+            if (in_array("0", $value) || ($select_ans !== $choises_ans)) {
                 $discorrect++;
                 $incorrectAns = new Question;
                 $incorrectAns->incorrectAnswer()->attach(
