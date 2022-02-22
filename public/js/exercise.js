@@ -110,31 +110,30 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+var forms = document.forms;
+var formsNum = forms.length - 1; //formタグの個数( -1 はログアウトボタンなので除外するため)
+
+var tmp = [];
+var tmp2 = []; //formタグからdataset.questionidを配列として抽出する
+
+for (var i = 1, len = forms.length; i < len; i++) {
+  for (var j = 1, len2 = forms[i].elements.length; j < len2; j++) {
+    tmp.push(forms[i].elements[j].dataset.questionid);
+  }
+}
+
+tmp2 = tmp.concat();
+tmp2 = $.unique(tmp2);
 var ansItems = new Map(); //回答と問題IDを格納する連想配列
 
 var ansResult;
 $(function () {
-  var forms = document.forms;
-  var formsNum = forms.length - 1; //formタグの個数( -1 はログアウトボタンなので除外するため)
-
-  var tmp = [];
-  var tmp2 = []; //formタグからdataset.questionidを配列として抽出する
-
-  for (var i = 1, len = forms.length; i < len; i++) {
-    for (var j = 1, len2 = forms[i].elements.length; j < len2; j++) {
-      tmp.push(forms[i].elements[j].dataset.questionid);
-    }
-  }
-
-  tmp2 = tmp.concat();
-  tmp2 = $.unique(tmp2); //formタグは問題量によって変化するため、ループさせる
-
   var _loop = function _loop(_i) {
     $("#questionNum".concat(_i)).find('input[id^="answers"]').on('change', function () {
       //特定のformタグでcheckboxのinputタグが変更された場合
-      var quesItems = []; //ユーザ回答を格納する配列
-
       var questionId = 'questionid' + $(this).data('questionid'); //問題IDを格納する
+
+      var quesItems = []; //ユーザ回答を格納する配列
 
       var checkFlag = $("#questionNum".concat(_i)).find('input[type="checkbox"]:checked').length; //対象の問題でチェックされているか判定するフラグ
 
@@ -169,6 +168,7 @@ $(function () {
     });
   };
 
+  //formタグは問題量によって変化するため、ループさせる
   for (var _i = 1; _i <= formsNum; _i++) {
     _loop(_i);
   } //ボタンを押下したタイミングで、解答を送信するフォームを作成して送信する

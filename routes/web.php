@@ -34,7 +34,6 @@ Route::prefix('quizzes')->group(function () {
         Route::get('/{question_id}/edit', 'QuizController@edit')->middleware('auth')->name('edit');
         Route::post('/{question_id}/update', 'QuizController@update')->middleware('auth')->name('update');
         Route::post('/{question_id}/destroy', 'QuizController@destroy')->middleware('auth')->name('destroy');
-
         Route::post('/exercise', 'QuizController@exercise')->middleware('auth')->name('exercise');
         Route::post('/exercise/result', 'QuizController@result')->middleware('auth')->name('exercise.result');
     });

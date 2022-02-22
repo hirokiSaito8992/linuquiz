@@ -1,30 +1,28 @@
-
 'use strict';
+
+const forms = document.forms;
+const formsNum = forms.length - 1;//formタグの個数( -1 はログアウトボタンなので除外するため)
+let tmp = [];
+let tmp2 = [];
+
+//formタグからdataset.questionidを配列として抽出する
+for (let i = 1, len = forms.length; i < len; i++) {
+    for(let j = 1, len2 = forms[i].elements.length; j < len2; j++) {
+        tmp.push(forms[i].elements[j].dataset.questionid);
+        }
+}
+tmp2 = tmp.concat();
+tmp2 = $.unique(tmp2);
 
 let ansItems = new Map();//回答と問題IDを格納する連想配列
 let ansResult;
 
 $(function(){
-
-    const forms = document.forms;
-    const formsNum = forms.length - 1;//formタグの個数( -1 はログアウトボタンなので除外するため)
-    let tmp = [];
-    let tmp2 = [];
-
-    //formタグからdataset.questionidを配列として抽出する
-    for (let i = 1, len = forms.length; i < len; i++) {
-        for(let j = 1, len2 = forms[i].elements.length; j < len2; j++) {
-            tmp.push(forms[i].elements[j].dataset.questionid);
-            }
-    }
-    tmp2 = tmp.concat();
-    tmp2 = $.unique(tmp2);
-
     //formタグは問題量によって変化するため、ループさせる
     for(let i = 1; i <= formsNum; i++){
-            $(`#questionNum${i}`).find('input[id^="answers"]').on('change',function(){ //特定のformタグでcheckboxのinputタグが変更された場合
+        $(`#questionNum${i}`).find('input[id^="answers"]').on('change',function(){ //特定のformタグでcheckboxのinputタグが変更された場合
+            let questionId = 'questionid' + $(this).data('questionid');//問題IDを格納する
             let quesItems =[];//ユーザ回答を格納する配列
-            const questionId = 'questionid' + $(this).data('questionid');//問題IDを格納する
             let checkFlag = $(`#questionNum${i}`).find('input[type="checkbox"]:checked').length;//対象の問題でチェックされているか判定するフラグ
 
             if(checkFlag > 0){// チェックされている場合

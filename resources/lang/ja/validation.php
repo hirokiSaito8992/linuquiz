@@ -132,6 +132,9 @@ return [
         '属性名' => [
             'ルール名' => 'カスタムメッセージ',
         ],
+        'questonid' => [
+            'required' => '予期せぬエラーが発生しました'
+        ],
     ],
 
     /*
@@ -145,6 +148,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'questionid' => '演習問題'
+    ],
 
 ];
