@@ -24,13 +24,13 @@ class ExerciseForm extends FormRequest
     public function rules()
     {
         return [
-            'smallcategories' => ['required_without_all:smallcategories.*']
+            'smallcategories' => ['required_without_all:smallcategories.*,randomExercise']
         ];
     }
     public function messages()
     {
         return [
-            'smallcategories.*' => '分野は1つ以上選択してください'
+            'smallcategories.*' => '1つ以上チェックしてください'
         ];
     }
 }

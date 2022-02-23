@@ -25,6 +25,28 @@
                     </div>
                     @endif
                 @endforeach
+
+                <div class="form-group">
+                    <label for="DisplayedNum">表示件数</label>
+                    <div class="form-row d-flex align-items-center justify-content-center">
+                        <div class="col-2">
+                            <select class="form-control text-center" id="DisplayedNum" name="DisplayedNum">
+                                <option selected value="">指定なし</option>
+                                <option value="1">1問</option>
+                                <option value="5">5問</option>
+                                <option value="10">10問</option>
+                                <option value="15">15問</option>
+                                <option value="30">30問</option>
+                            </select> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group form-check">    
+                    <input type="checkbox" class="form-check-input" id="randomExercise" name="randomExercise" value="true">
+                    <label class="form-check-label" for="randomExercise">間違った問題をランダム出題する</label>
+                </div>
+
                 <button type="submit" class="btn btn-primary rounded-pill">問題スタート</button>
             </form>
         </div>

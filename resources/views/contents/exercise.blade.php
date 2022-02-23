@@ -23,7 +23,6 @@
                         @csrf
                         @foreach($value->choices_ans as $k1 => $v1)
                             <div class="form-check mb-2">
-                                {{-- <input type="hidden" name="{{ 'question_id'.($v1->question_id) }}" value="{{ $v1->question_id }}"> --}}
                                 <input id="{{ 'answers'.$v1->id }}" class="form-check-input checkflag" type="checkbox"  data-ansId={{$v1->id}} data-questionid={{ $v1->question_id }} name="{{ 'questionans' . $v1->question_id . '[]' }}" value="{{ $v1->correct_answer }}">
                                 <label class="form-check-label" for="{{ 'answers'.$v1->id }}">
                                     {{$v1->choise}}

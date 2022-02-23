@@ -13,6 +13,7 @@ class ExeExercise
 
         $smallCategories = $request->input('smallcategories'); //フォーム送信から分野を取得
         $examSubject = $request->input('exam-subject'); //フォーム送信から試験名を取得
+        $displayNum = $request->input('DisplayedNum');
 
         $query = Question::query(); //選択した問題を取得する
         $query->select(
@@ -28,7 +29,8 @@ class ExeExercise
         }
         $query->where('large_categories_id', $examSubject)->orderBy('category_id', 'asc');
 
-        $question = $query->get(); //選択した分野の問題を格納
+        //選択した分野の問題を格納
+        (!isset($displayNum)) ? $question = $query->get() : $question = $query->inRandomOrder()->take($displayNum)->get();
 
         //得られた各問題から、対応する選択肢を取得していく
         //また、その結果をquestionオブジェクトに挿入する

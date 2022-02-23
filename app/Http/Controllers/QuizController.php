@@ -12,13 +12,12 @@ use App\Models\LargeCategory;
 
 use App\Services\StoreUpdateQuizData;
 use App\Services\ExeExercise;
-
+use App\Services\RandomExeExercise;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreQuizForm;
 use App\Http\Requests\ExerciseForm;
-use App\Http\Requests\PracticingForm;
 use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
@@ -94,7 +93,9 @@ class QuizController extends Controller
      */
     public function exercise(ExerciseForm $request)
     {
-        $question = ExeExercise::exercise($request);
+        $randomExercise = $request->input('randomExercise');
+        $login_user_id = Auth::id();
+        isset($randomExercise) ? $question = RandomExeExercise::random($login_user_id) : $question = ExeExercise::exercise($request);
         return view('contents.exercise', compact('question'));
     }
 
@@ -144,12 +145,10 @@ class QuizController extends Controller
 
             //不正解を集計して、間違えた問題として、テーブルに保存する
             if (in_array("0", $value) || ($select_ans !== $choises_ans)) {
+
                 $discorrect++;
-                $incorrectAns = new Question;
-                $incorrectAns->incorrectAnswer()->attach(
-                    ['user_id' => Auth::id()],
-                    ['question_id' => $key]
-                );
+                $incorrectAns = User::find(Auth::id()); //間違った問題に対して格納するユーザを特定する
+                $incorrectAns->incorrectAnswers()->syncWithoutDetaching($key); //完全重複しない限りでは、中間テーブルにデータを挿入していく
             } else {
                 $correct++;
             }
