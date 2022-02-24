@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-
 use App\Models\User;
 use App\Models\Question;
 use App\Models\Choise;
@@ -14,10 +12,11 @@ use App\Services\StoreUpdateQuizData;
 use App\Services\ExeExercise;
 use App\Services\RandomExeExercise;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreQuizForm;
 use App\Http\Requests\ExerciseForm;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
@@ -99,13 +98,16 @@ class QuizController extends Controller
         return view('contents.exercise', compact('question'));
     }
 
+    /**
+     * 問題演習の結果をデータを処理して結果を表示するアクションメソッド
+     */
     public function result(Request $request)
     {
         $data = $request->input('select_answer');
         $data = json_decode($data); //JSON形式でデータが入っているのでデコードして配列(Array)に戻す
         $data_arry = (array)$data; //バリデーション用の配列(Array型)
 
-        $validator = Validator::make($data_arry, [
+        $validator = Validator::make($data_arry, [ //バリデーション処理
             'questionid*' => ['required'],
             'questionid*.*' => ['required', 'int']
         ]);
@@ -131,9 +133,9 @@ class QuizController extends Controller
 
         $correct = 0; //正解数
         $discorrect = 0; //不正解数
+
         //データベースと回答を参照して正誤率を計算する
         foreach ($data_answer as $key => $value) {
-
             $choises = Choise::select('correct_answer')->where('question_id', $key)->get(); //question_idに基づいてDBから解答を取得する
             $choises_ans = $choises->where('correct_answer', '1')->count(); //その問題の正解数
             $value_ans = array_count_values($value);
@@ -145,7 +147,6 @@ class QuizController extends Controller
 
             //不正解を集計して、間違えた問題として、テーブルに保存する
             if (in_array("0", $value) || ($select_ans !== $choises_ans)) {
-
                 $discorrect++;
                 $incorrectAns = User::find(Auth::id()); //間違った問題に対して格納するユーザを特定する
                 $incorrectAns->incorrectAnswers()->syncWithoutDetaching($key); //完全重複しない限りでは、中間テーブルにデータを挿入していく

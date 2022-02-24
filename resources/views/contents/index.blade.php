@@ -44,7 +44,7 @@
 
                 <div class="form-group form-check">    
                     <input type="checkbox" class="form-check-input" id="randomExercise" name="randomExercise" value="true">
-                    <label class="form-check-label" for="randomExercise">間違った問題をランダム出題する</label>
+                    <label class="form-check-label" for="randomExercise">間違った問題をランダム出題する(10問出題)</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary rounded-pill">問題スタート</button>

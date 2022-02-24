@@ -2,30 +2,52 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
-
-use App\Models\User;
 use App\Models\Question;
 use App\Models\Choise;
-use App\Models\SmallCategory;
-use App\Models\LargeCategory;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\StoreQuizForm;
-use App\Http\Requests\ExerciseForm;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RandomExeExercise
 {
+    /**
+     * ログイン中のユーザが間違った問題を中間テーブルを利用して、データを取得してくる
+     */
     public static function random($user_id)
     {
-        //ログイン中のユーザIDを元にデータベースにアクセスを行い、そのユーザが間違ったものだけを取得する
+        //間違った問題のIDを取得してくる(ランダムで10件固定)
+        $incorrectAns = DB::table('user_question')
+            ->select('user_question.question_id as question_id')
+            ->where('user_id', $user_id)
+            ->inRandomOrder()
+            ->take(10)
+            ->get();
 
-        $question = Question::where('user_id', $user_id)->get();
-        foreach ($question as $value) {
-            $a = $value->incorrectAnswer();
-            dd($a);
+        $ques_choise = array(); //foreachでループしているので、配列で末尾に追加していっている
+        foreach ($incorrectAns as $value) {
+            $query = Question::leftJoin('users', 'questions.user_id', '=', 'users.id')
+                ->select(
+                    'questions.id as question_id',
+                    'questions.name as question_name',
+                    'users.name as user_name',
+                )
+                ->where('questions.id', $value->question_id)
+                ->get();
+            array_push($ques_choise, $query);
         }
+
+        //問題に対応した選択肢を取得して格納したデータに追加している
+        foreach ($ques_choise as $val) {
+            foreach ($val as $k => $v) {
+                $choice = Choise::where('question_id', $v->question_id)->get();
+                $v->choices_ans = $choice;
+            }
+        }
+
+        $result = array(); //最終的なデータを格納する(コレクション型)
+        foreach ($ques_choise as $k2 => $v2) {
+            foreach ($v2 as $k3 => $v3) {
+                $result = array_merge($result, [$k3 => $v3]);
+            }
+        }
+        return $result;
     }
 }

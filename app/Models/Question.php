@@ -26,6 +26,6 @@ class Question extends Model
 
     public function incorrectAnswers() //ユーザが間違った問題を集計する 多対多
     {
-        return $this->belongsToMany(User::class, 'user_question')->withTimeStamps();
+        return $this->belongsToMany(User::class, 'user_question', 'user_id', 'question-id')->withPivot('user_id', 'question_id')->withTimeStamps();
     }
 }
