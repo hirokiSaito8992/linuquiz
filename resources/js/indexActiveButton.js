@@ -23,4 +23,3 @@ function checkValue(event){
     checkIncorrect.disabled = false;
     checked.length > 0 ? checkIncorrect.disabled = true : '';
 }
-

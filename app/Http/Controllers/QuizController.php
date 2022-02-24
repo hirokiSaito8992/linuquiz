@@ -145,13 +145,16 @@ class QuizController extends Controller
                 $k === 1 && $select_ans = $v;
             }
 
+            $incorrectAns = User::find(Auth::id()); //間違った問題に対して格納するユーザを特定する
+
             //不正解を集計して、間違えた問題として、テーブルに保存する
-            if (in_array("0", $value) || ($select_ans !== $choises_ans)) {
+            if (in_array("0", $value) || ($select_ans !== $choises_ans)) { //ユーザ回答に0(不正解)またはユーザ回答の正解数が足りない場合
                 $discorrect++;
-                $incorrectAns = User::find(Auth::id()); //間違った問題に対して格納するユーザを特定する
                 $incorrectAns->incorrectAnswers()->syncWithoutDetaching($key); //完全重複しない限りでは、中間テーブルにデータを挿入していく
-            } else {
+            } else { //正解した場合
                 $correct++;
+                //問題IDで間違いテーブルの中身を検索して、該当のデータを解除する
+                $incorrectAns->incorrectAnswers->where('question_id', $key) ? $incorrectAns->incorrectAnswers()->detach($key) : '';
             }
         }
         return view('contents.exercise_result', compact('data_question_total', 'correct', 'discorrect'));

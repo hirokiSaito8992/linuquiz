@@ -13,7 +13,7 @@
             <div class="mt-3">
                 <h3 class="h1 text-center">{{ '問題'.($index + 1) }}</h3>
             </div>
-            <div class="card mt-4 mb-5">
+            <div class="card mt-4 mb-3">
                 <div class="card-body mb-5">
                     <div class="d-flex flex-column text-center">
                         <p class="mb-0">{{ $value->question_name }}</p>
@@ -32,8 +32,13 @@
                     </form>
                 </div>
             </div>
+                @if($loop->last)
+                    @if(!empty($value))
+                        <button id="endExercise" class="btn btn-primary btn-lg btn-block mb-2">演習を終了する</button>
+                    @endif
+                @endif
             @endforeach
-            <button id="endExercise" class="btn btn-primary btn-lg btn-block mb-5">演習を終了する</button>
+            <button id="topBack" class="btn btn-outline-info btn-lg">一覧画面に戻る</button>
         </div>
     </div>
 </div>

@@ -113,6 +113,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var forms = document.forms;
 var formsNum = forms.length - 1; //formタグの個数( -1 はログアウトボタンなので除外するため)
 
+var backButton = document.getElementById('topBack'); //一覧画面に戻るボタンのElement
+
+backButton.addEventListener('click', function () {
+  history.back();
+});
 var tmp = [];
 var tmp2 = []; //formタグからdataset.questionidを配列として抽出する
 

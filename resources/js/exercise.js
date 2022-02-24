@@ -2,6 +2,12 @@
 
 const forms = document.forms;
 const formsNum = forms.length - 1;//formタグの個数( -1 はログアウトボタンなので除外するため)
+
+const backButton = document.getElementById('topBack'); //一覧画面に戻るボタンのElement
+backButton.addEventListener('click', ()=>{
+    history.back();
+})
+
 let tmp = [];
 let tmp2 = [];
 
