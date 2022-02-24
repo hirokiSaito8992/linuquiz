@@ -20,7 +20,7 @@
                     @endif
                     @if($category->large_categories_id === 4)
                     <div class="form-group form-check">    
-                        <input type="checkbox" class="form-check-input" id="smallcategory{{$category->id}}" name="smallcategories[]" value="{{$loop->iteration}}">
+                        <input type="checkbox" id="smallcategory{{$category->id}}" class="form-check-input checkTarget" name="smallcategories[]" value="{{$loop->iteration}}">
                         <label class="form-check-label" for="smallcategory{{$category->id}}">{{ $category->name }}</label>
                     </div>
                     @endif
@@ -53,5 +53,6 @@
     </div>
 </div>
 
+<script src="{{ mix('js/indexActiveButton.js') }}"></script>
 
 @endsection

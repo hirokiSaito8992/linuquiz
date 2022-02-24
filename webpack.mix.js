@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/exercise.js','public/js')
     .js('resources/js/chartResult.js','public/js')
     .js('resources/js/chkButtonActive.js','public/js')
+    .js('resources/js/indexActiveButton.js','public/js')
     .sass('resources/sass/app.scss', 'public/css');
