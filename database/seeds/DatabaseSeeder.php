@@ -12,8 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            LargeCategoriesTableSeeder::class,
-            SmallCategoriesTableSeeder::class,
+            SmallCategoriesTableLinuc201Seeder::class
         ]);
     }
 }

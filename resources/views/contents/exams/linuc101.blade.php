@@ -1,17 +1,6 @@
-@extends('layouts.app')
-
-@section('title','メニュー')
-
-@section('content')
-
-@include('layouts.navbar')
-
-@include('layouts.error_list')
-
-
 <div class="container">
     <div class="card mt-4 text-center">
-        <h2 class="card-title mt-3">Linuc 202試験</h2>
+        <h2 class="card-title mt-3">Linuc 101試験</h2>
         <div class="card-body">
             <form action="{{ route('quizzes.exercise') }}" method="POST">
                 @csrf
@@ -19,7 +8,7 @@
                     @if($loop->first)
                         <input type="hidden" name="exam-subject" value="{{ $category->large_categories_id }}">
                     @endif
-                    @if($category->large_categories_id === 4)
+                    @if($category->large_categories_id === 1)
                     <div class="form-group form-check">    
                         <input type="checkbox" id="smallcategory{{$category->id}}" class="form-check-input checkTarget" name="smallcategories[]" value="{{$loop->iteration}}">
                         <label class="form-check-label" for="smallcategory{{$category->id}}">{{ $category->name }}</label>
@@ -53,7 +42,3 @@
         </div>
     </div>
 </div>
-
-<script src="{{ mix('js/indexActiveButton.js') }}"></script>
-
-@endsection

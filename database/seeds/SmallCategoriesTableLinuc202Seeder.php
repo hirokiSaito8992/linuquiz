@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SmallCategoriesTableSeeder extends Seeder
+class SmallCategoriesTableLinuc202Seeder extends Seeder
 {
     /**
      * Run the database seeds.

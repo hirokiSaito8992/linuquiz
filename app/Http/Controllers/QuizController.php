@@ -24,7 +24,7 @@ class QuizController extends Controller
     public function index()
     {
         $small_category = SmallCategory::all();
-        return view('contents.index', compact('small_category')); //問題選択画面へ
+        return view('contents.new_index', compact('small_category')); //問題選択画面へ
     }
 
     /**

@@ -1,14 +1,3 @@
-@extends('layouts.app')
-
-@section('title','メニュー')
-
-@section('content')
-
-@include('layouts.navbar')
-
-@include('layouts.error_list')
-
-
 <div class="container">
     <div class="card mt-4 text-center">
         <h2 class="card-title mt-3">Linuc 202試験</h2>
@@ -53,7 +42,3 @@
         </div>
     </div>
 </div>
-
-<script src="{{ mix('js/indexActiveButton.js') }}"></script>
-
-@endsection
