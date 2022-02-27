@@ -32,6 +32,7 @@ Route::prefix('quizzes')->group(function () {
         Route::resource('/', 'QuizController')
             ->middleware('auth')->except(['show', 'edit', 'update', 'destroy',]);
         Route::get('/getindex/{id}', 'QuizAjaxController@getBlade')->middleware('auth')->name('index.ajax');
+        Route::get('/getlargecate/{largecate_id}', 'QuizAjaxController@getSmallLargeSelect')->middleware('auth')->name('create_selectLargeCate.ajax');
         Route::get('/{question_id}/edit', 'QuizController@edit')->middleware('auth')->name('edit');
         Route::post('/{question_id}/update', 'QuizController@update')->middleware('auth')->name('update');
         Route::post('/{question_id}/destroy', 'QuizController@destroy')->middleware('auth')->name('destroy');

@@ -26,4 +26,10 @@ class QuizAjaxController extends Controller
                 break;
         }
     }
+
+    public function getSmallLargeSelect($largecate_id)
+    {
+        $large_category = SmallCategory::where('large_categories_id', $largecate_id)->get();
+        return $large_category;
+    }
 }

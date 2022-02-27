@@ -3,6 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/js/chartResult.js": "/js/chartResult.js",
     "/js/chkButtonActive.js": "/js/chkButtonActive.js",
+    "/js/createForm.js": "/js/createForm.js",
     "/js/exercise.js": "/js/exercise.js",
     "/js/indexActiveButton.js": "/js/indexActiveButton.js",
     "/js/selectExam.js": "/js/selectExam.js"

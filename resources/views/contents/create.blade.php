@@ -18,25 +18,29 @@
                         <form action="{{ route('quizzes.store') }}" method="POST">
                             @csrf
                             <p class="p-1 mb-0 font-weight-bold">試験科目</p>
-                            
                             @foreach($large_categories as $largeCategory)
-                            <div class="form-check-inline mb-0">
-                                <input type="checkbox" class="form-check-input" id="exam-subjects{{ $largeCategory->id }}" name="exam-subjects" value="{{ $largeCategory->id }}" @if(old('exam-subjects') == $loop->iteration) checked @endif>
+                            <div class="form-check-inline mb-0 exam_item">
+                                <input type="checkbox" class="form-check-input examTarget" data-id="{{ $largeCategory->id }}" id="exam-subjects{{ $largeCategory->id }}" name="exam-subjects[]" value="{{ $largeCategory->id }}" @if(old('exam-subjects[]') == $loop->iteration) checked @endif>
                                 <label class="form-check-label" for="exam-subjects{{ $largeCategory->id }}">{{ $largeCategory->name }}</label>
                             </div>
                             @endforeach
 
-                            {{-- 順次 Linuc201 Linuc102 に応じて分野名もそれに対応したものを用意する --}}
-
                             <div class="form-group">
-                                <label for="subject-field" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
-                                <select class="form-control" id="subject-field" name="subject-field">
-                                    <option selected value="">選択してください</option>
-                                    @foreach($small_categories as $small)
-                                    <option value="{{ $small->id }}" @if(old('subject-field') == $small->id) selected @endif>{{ $small->name }}</option>
-                                    @endforeach
+                                <label for="subjectField" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
+                                <select class="form-control" id="subjectField" name="subjectField">
+                                    <option value="">選択してください</option>
                                 </select>
                             </div>
+
+                            {{-- <div class="form-group">
+                                <label for="subjectField" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
+                                <select class="form-control" id="subjectField" name="subjectField">
+                                    <option value="">選択してください</option>
+                                    @foreach($small_categories as $small)
+                                    <option class="optionTarget" value="{{ $small->id }}" @if(old('subjectField') == $small->id) selected @endif data-Val="{{ $small->id }}" data-CateName="{{ $small->name }}" data-LargeId='{{ $small->large_categories_id }}'>{{ $small->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="problem-statement" class="font-weight-bold">問題文</label>
@@ -66,5 +70,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ mix('js/createForm.js') }}"></script>
 
 @endsection
