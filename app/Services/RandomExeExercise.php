@@ -11,7 +11,7 @@ class RandomExeExercise
     /**
      * ログイン中のユーザが間違った問題を中間テーブルを利用して、データを取得してくる
      */
-    public static function random($user_id)
+    public static function random($user_id, $large_category_id)
     {
         //間違った問題のIDを取得してくる(ランダムで10件固定)
         $incorrectAns = DB::table('user_question')
@@ -24,12 +24,14 @@ class RandomExeExercise
         $ques_choise = array(); //foreachでループしているので、配列で末尾に追加していっている
         foreach ($incorrectAns as $value) {
             $query = Question::leftJoin('users', 'questions.user_id', '=', 'users.id')
+                ->Join('small_categories', 'questions.category_id', '=', 'small_categories.id')
                 ->select(
                     'questions.id as question_id',
                     'questions.name as question_name',
                     'users.name as user_name',
                 )
                 ->where('questions.id', $value->question_id)
+                ->where('small_categories.large_categories_id', $large_category_id)
                 ->get();
             array_push($ques_choise, $query);
         }

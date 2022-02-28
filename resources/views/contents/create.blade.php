@@ -32,16 +32,6 @@
                                 </select>
                             </div>
 
-                            {{-- <div class="form-group">
-                                <label for="subjectField" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
-                                <select class="form-control" id="subjectField" name="subjectField">
-                                    <option value="">選択してください</option>
-                                    @foreach($small_categories as $small)
-                                    <option class="optionTarget" value="{{ $small->id }}" @if(old('subjectField') == $small->id) selected @endif data-Val="{{ $small->id }}" data-CateName="{{ $small->name }}" data-LargeId='{{ $small->large_categories_id }}'>{{ $small->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
-
                             <div class="form-group">
                                 <label for="problem-statement" class="font-weight-bold">問題文</label>
                                 <textarea class="form-control" id="problem-statement" name="problem-statement" rows="4" placeholder="100文字以内で入力してください">{{ old('problem-statement') }}</textarea>

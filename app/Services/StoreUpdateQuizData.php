@@ -12,7 +12,7 @@ class StoreUpdateQuizData
         $questions = new Question; //問題文を格納するモデルインスタンス
         $questions->name = $request->input('problem-statement'); //試験名
         $questions->user_id = $request->user()->id; //認証済みユーザIDを取得
-        $questions->category_id = $request->input('subject-field'); //各分野
+        $questions->category_id = $request->input('subjectField'); //各分野
         $questions->save(); //データベースに反映
 
         $alternatives1 = $request->input('choice1'); //選択肢1
@@ -47,7 +47,7 @@ class StoreUpdateQuizData
     {
         $questions = Question::find($question_id);
         $questions->name = $request->input('problem-statement'); //試験名
-        $questions->category_id = $request->input('subject-field'); //各分野
+        $questions->category_id = $request->input('subjectField'); //各分野
         $questions->save();
 
         $alternatives1 = $request->input('choice1'); //選択肢1

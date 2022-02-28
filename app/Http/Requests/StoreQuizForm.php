@@ -26,7 +26,7 @@ class StoreQuizForm extends FormRequest
 
         $defaultRules = [
             'exam-subjects' => ['required'],
-            'subject-field' => ['required'],
+            'subjectField' => ['required'],
             'problem-statement' => ['required', 'max:100'],
             'choices' => ['required_without_all:choice1,choice2,choice3,choice4'],
             'answers' => ['required_without_all:answers.0,answers.1,answers.2,answers.3'],

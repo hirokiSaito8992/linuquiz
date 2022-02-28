@@ -9,6 +9,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-10">
+            
             @foreach($question as $index => $value)
             <div class="mt-3">
                 <h3 class="h1 text-center">{{ '問題'.($index + 1) }}</h3>
