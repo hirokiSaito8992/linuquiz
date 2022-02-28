@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Question;
 use App\Models\Choise;
 
+use App\Http\Requests\StoreQuizForm;
+
 class StoreUpdateQuizData
 {
     public static function store($request)

@@ -37,7 +37,7 @@
                     <label class="form-check-label" for="randomExercise">間違った問題をランダム出題する(10問出題)</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary rounded-pill">問題スタート</button>
+                <button type="submit" class="btn btn-primary rounded-pill" disabled>準備中</button>
             </form>
         </div>
     </div>

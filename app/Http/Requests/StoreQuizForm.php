@@ -45,7 +45,7 @@ class StoreQuizForm extends FormRequest
     {
         return [
             'exam-subjects' => '試験科目',
-            'subject-field' => '分野',
+            'subjectField' => '分野',
             'problem-statement' => '問題文'
         ];
     }
