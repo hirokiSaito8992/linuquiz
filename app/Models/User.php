@@ -12,6 +12,7 @@ class User extends Model
     protected $fillable = [
         'id',
         'name',
+        'password'
     ];
 
     public function questions()
