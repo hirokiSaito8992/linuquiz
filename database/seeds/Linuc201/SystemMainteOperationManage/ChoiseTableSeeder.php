@@ -1,11 +1,10 @@
 <?php
 
-namespace Database\Seeds\Linuc201\SystemBootLinuxKernel;
+namespace Database\Seeds\Linuc201\SystemMainteOperationManage;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
 
 class ChoiseTableSeeder extends Seeder
 {
@@ -17,152 +16,152 @@ class ChoiseTableSeeder extends Seeder
     public function run()
     {
         DB::table('choises')->insert([
-            //Linuxカーネルに関して問題1の選択肢
+            //システム保守構成に関して問題1の選択肢
             [
-                'choise' => 'systemctl enable nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl enabled nginx',
+                'choise' => 'PlaybookはXMLの形式で記述する',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '49',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl is-enabled nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl status nginx',
+                'choise' => 'Playbookは1つのファイルで記述しなければならない',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '49',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'choise' => 'Playbookは設定対象のホスト毎に用意しなければならない',
+                'correct_answer' => '0',
+                'question_id' => '49',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'Playbookはリモートホストへの設定作業等を記載するものである',
+                'correct_answer' => '1',
+                'question_id' => '49',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
             //問題2の選択肢
             [
-                'choise' => 'grub-mkconfig -o /boot/grub/grub.cfg',
+                'choise' => '操作を何回行っても同じ結果が得られること',
                 'correct_answer' => '1',
-                'question_id' => '35',
+                'question_id' => '50',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig /etc/default/grub -o /boot/grub/grub.cfg',
+                'choise' => 'ユーザアクセス増加が見込まれる際にサーバ台数を増加させる操作',
                 'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '50',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig -o /etc/default/grub /boot/grub/grub.cfg',
+                'choise' => '繰り返し実行される操作内容を定義すること',
                 'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '50',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig -v /boot/grub/grub.cfg',
+                'choise' => 'それまで手動実行していた内容を自動的に実行すること',
                 'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '50',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題3の選択肢
             [
-                'choise' => 'systemctl status all',
+                'choise' => 'free -l',
                 'correct_answer' => '0',
-                'question_id' => '36',
+                'question_id' => '51',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl status service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-unit-files -t service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-units -t service',
+                'choise' => 'free -t',
                 'correct_answer' => '1',
-                'question_id' => '36',
+                'question_id' => '51',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'free -h',
+                'correct_answer' => '0',
+                'question_id' => '51',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'free -s',
+                'correct_answer' => '0',
+                'question_id' => '51',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題4の選択肢
             [
-                'choise' => 'hostname',
+                'choise' => 'gzip files_oss-1.0.0.zip',
                 'correct_answer' => '0',
-                'question_id' => '37',
+                'question_id' => '52',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'uname -r',
-                'correct_answer' => '1',
-                'question_id' => '37',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'cat /etc/profile',
+                'choise' => 'gunzip files_oss-1.0.0.zip',
                 'correct_answer' => '0',
-                'question_id' => '37',
+                'question_id' => '52',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'cat /proc/version',
+                'choise' => 'unzip files_oss-1.0.0.zip',
                 'correct_answer' => '1',
-                'question_id' => '37',
+                'question_id' => '52',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'gzip -d files_oss-1.0.0.zip',
+                'correct_answer' => '0',
+                'question_id' => '52',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題5の選択肢
             [
-                'choise' => 'remove qede',
+                'choise' => '/etc/issue',
                 'correct_answer' => '0',
-                'question_id' => '38',
+                'question_id' => '53',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'blacklist qede',
+                'choise' => '/etc/issue.net',
+                'correct_answer' => '0',
+                'question_id' => '53',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => '/etc/motd',
                 'correct_answer' => '1',
-                'question_id' => '38',
+                'question_id' => '53',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'options qede',
+                'choise' => '/etc/fstab',
                 'correct_answer' => '0',
-                'question_id' => '38',
+                'question_id' => '53',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-            [
-                'choise' => 'install qede',
-                'correct_answer' => '0',
-                'question_id' => '38',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-
         ]);
     }
 }

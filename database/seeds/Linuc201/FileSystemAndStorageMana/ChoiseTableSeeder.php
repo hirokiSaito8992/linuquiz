@@ -1,11 +1,10 @@
 <?php
 
-namespace Database\Seeds\Linuc201\SystemBootLinuxKernel;
+namespace Database\Seeds\Linuc201\FileSystemAndStorageMana;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
 
 class ChoiseTableSeeder extends Seeder
 {
@@ -17,152 +16,151 @@ class ChoiseTableSeeder extends Seeder
     public function run()
     {
         DB::table('choises')->insert([
-            //Linuxカーネルに関して問題1の選択肢
+            //ファイルシステムとストレージに関して問題1の選択肢
             [
-                'choise' => 'systemctl enable nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl enabled nginx',
+                'choise' => 'history',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '39',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl is-enabled nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl status nginx',
+                'choise' => 'pvmetadatasize',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '39',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'pv_min_size',
+                'correct_answer' => '0',
+                'question_id' => '39',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'history_size',
+                'correct_answer' => '1',
+                'question_id' => '39',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題2の選択肢
             [
-                'choise' => 'grub-mkconfig -o /boot/grub/grub.cfg',
+                'choise' => 'ext4はファイルシステムのサイズを後から拡大できる',
+                'correct_answer' => '0',
+                'question_id' => '40',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'ext4はファイルシステムのサイズを後から縮小できる',
+                'correct_answer' => '0',
+                'question_id' => '40',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'xfs_infoコマンドは、ext4ファイルシステムの詳細情報を表示するコマンドである',
                 'correct_answer' => '1',
-                'question_id' => '35',
+                'question_id' => '40',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig /etc/default/grub -o /boot/grub/grub.cfg',
+                'choise' => 'ext4はext3の下位互換があるため、ext3としてマウントすることも可能である',
                 'correct_answer' => '0',
-                'question_id' => '35',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'grub-mkconfig -o /etc/default/grub /boot/grub/grub.cfg',
-                'correct_answer' => '0',
-                'question_id' => '35',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'grub-mkconfig -v /boot/grub/grub.cfg',
-                'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '40',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題3の選択肢
             [
-                'choise' => 'systemctl status all',
+                'choise' => 'xfs_growfs',
                 'correct_answer' => '0',
-                'question_id' => '36',
+                'question_id' => '41',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl status service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-unit-files -t service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-units -t service',
+                'choise' => 'lvextend',
                 'correct_answer' => '1',
-                'question_id' => '36',
+                'question_id' => '41',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'pvcreate',
+                'correct_answer' => '0',
+                'question_id' => '41',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'resize2fs',
+                'correct_answer' => '0',
+                'question_id' => '41',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題4の選択肢
             [
-                'choise' => 'hostname',
-                'correct_answer' => '0',
-                'question_id' => '37',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'uname -r',
+                'choise' => 'dd・chmod・mkswap・swapon',
                 'correct_answer' => '1',
-                'question_id' => '37',
+                'question_id' => '42',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'cat /etc/profile',
+                'choise' => 'dd・chmod・swapon・mkswap',
                 'correct_answer' => '0',
-                'question_id' => '37',
+                'question_id' => '42',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'cat /proc/version',
-                'correct_answer' => '1',
-                'question_id' => '37',
+                'choise' => 'dd・chmod・mkswap・swapoff',
+                'correct_answer' => '0',
+                'question_id' => '42',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'dd・chmod・swapoff・mkswap',
+                'correct_answer' => '0',
+                'question_id' => '42',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題5の選択肢
             [
-                'choise' => 'remove qede',
-                'correct_answer' => '0',
-                'question_id' => '38',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'blacklist qede',
+                'choise' => 'systemctl emergency',
                 'correct_answer' => '1',
-                'question_id' => '38',
+                'question_id' => '43',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'options qede',
+                'choise' => 'systemctl rescue',
                 'correct_answer' => '0',
-                'question_id' => '38',
+                'question_id' => '43',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'install qede',
+                'choise' => 'init 1',
                 'correct_answer' => '0',
-                'question_id' => '38',
+                'question_id' => '43',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-
+            [
+                'choise' => 'systemctl get-default',
+                'correct_answer' => '0',
+                'question_id' => '43',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

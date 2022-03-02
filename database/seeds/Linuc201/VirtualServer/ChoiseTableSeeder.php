@@ -1,11 +1,10 @@
 <?php
 
-namespace Database\Seeds\Linuc201\SystemBootLinuxKernel;
+namespace Database\Seeds\Linuc201\VirtualServer;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
 
 class ChoiseTableSeeder extends Seeder
 {
@@ -17,152 +16,152 @@ class ChoiseTableSeeder extends Seeder
     public function run()
     {
         DB::table('choises')->insert([
-            //Linuxカーネルに関して問題1の選択肢
+            //仮想サーバに関して問題1の選択肢
             [
-                'choise' => 'systemctl enable nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl enabled nginx',
+                'choise' => 'WindowsやLinuxなどのOS上で仮想化ソフトを実行し、その上で仮想マシンを動作させる',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '54',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl is-enabled nginx',
+                'choise' => 'LinuxやWindows等のOSを必要とせず、ハードウェア上で直接仮想化ソフトウェアを実行し、その上で仮想マシンを動作させる',
                 'correct_answer' => '1',
-                'question_id' => '34',
+                'question_id' => '54',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl status nginx',
+                'choise' => '基盤OSとカーネルを共有し、仮想環境上に新たにOSを使用せず、アプリケーションを動作させる',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '54',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'choise' => '比較的オーバーヘッドが生じやすく、仮想マシンの動作速度が遅くなる',
+                'correct_answer' => '0',
+                'question_id' => '54',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
             //問題2の選択肢
             [
-                'choise' => 'grub-mkconfig -o /boot/grub/grub.cfg',
+                'choise' => 'vm-install',
+                'correct_answer' => '0',
+                'question_id' => '55',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'virt-install',
                 'correct_answer' => '1',
-                'question_id' => '35',
+                'question_id' => '55',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig /etc/default/grub -o /boot/grub/grub.cfg',
+                'choise' => 'kvm-install',
                 'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '55',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig -o /etc/default/grub /boot/grub/grub.cfg',
+                'choise' => 'virsh install',
                 'correct_answer' => '0',
-                'question_id' => '35',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'grub-mkconfig -v /boot/grub/grub.cfg',
-                'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '55',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題3の選択肢
             [
-                'choise' => 'systemctl status all',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl status service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-unit-files -t service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-units -t service',
+                'choise' => '準仮想化ゲストOSのI/Oは、完全仮想化ゲストOSのI/Oに比べてオーバヘッドが大きい',
                 'correct_answer' => '1',
-                'question_id' => '36',
+                'question_id' => '56',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'Xenの準仮想化では、ゲストOSはハイパーバイザーに対してハイパーバイザーコールを発行する',
+                'correct_answer' => '0',
+                'question_id' => '56',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => '完全仮想化では物理マシン上で稼働するOSを改変することなく、そのままゲストOSとして稼働させることができる',
+                'correct_answer' => '0',
+                'question_id' => '56',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => '完全仮想化を実現するKVMはLinuxの一部である',
+                'correct_answer' => '0',
+                'question_id' => '56',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題4の選択肢
             [
-                'choise' => 'hostname',
-                'correct_answer' => '0',
-                'question_id' => '37',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'uname -r',
+                'choise' => 'VMに対して管理用APIを提供する',
                 'correct_answer' => '1',
-                'question_id' => '37',
+                'question_id' => '57',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'cat /etc/profile',
-                'correct_answer' => '0',
-                'question_id' => '37',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'cat /proc/version',
+                'choise' => 'リクエストをlibvirtdデーモンが受付、ハイパーバイザーに接続する',
                 'correct_answer' => '1',
-                'question_id' => '37',
+                'question_id' => '57',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'KVM Xenをサポートする',
+                'correct_answer' => '1',
+                'question_id' => '57',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'virt-managerはサポートしない',
+                'correct_answer' => '0',
+                'question_id' => '57',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題5の選択肢
             [
-                'choise' => 'remove qede',
-                'correct_answer' => '0',
-                'question_id' => '38',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'blacklist qede',
+                'choise' => '-v',
                 'correct_answer' => '1',
-                'question_id' => '38',
+                'question_id' => '58',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'options qede',
-                'correct_answer' => '0',
-                'question_id' => '38',
+                'choise' => '--hvm',
+                'correct_answer' => '1',
+                'question_id' => '58',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'install qede',
+                'choise' => '--full',
                 'correct_answer' => '0',
-                'question_id' => '38',
+                'question_id' => '58',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-
+            [
+                'choise' => '-f',
+                'correct_answer' => '0',
+                'question_id' => '58',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

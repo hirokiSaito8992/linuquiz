@@ -1,11 +1,10 @@
 <?php
 
-namespace Database\Seeds\Linuc201\SystemBootLinuxKernel;
+namespace Database\Seeds\Linuc201\NetworkConfig;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
 
 class ChoiseTableSeeder extends Seeder
 {
@@ -17,152 +16,152 @@ class ChoiseTableSeeder extends Seeder
     public function run()
     {
         DB::table('choises')->insert([
-            //Linuxカーネルに関して問題1の選択肢
+            //ネットワーク構成に関して問題1の選択肢
             [
-                'choise' => 'systemctl enable nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl enabled nginx',
+                'choise' => 'ip show',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '44',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl is-enabled nginx',
-                'correct_answer' => '1',
-                'question_id' => '34',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl status nginx',
+                'choise' => 'ip address help',
                 'correct_answer' => '0',
-                'question_id' => '34',
+                'question_id' => '44',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
+            [
+                'choise' => 'ip link show',
+                'correct_answer' => '1',
+                'question_id' => '44',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'ip address list',
+                'correct_answer' => '1',
+                'question_id' => '44',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+
             //問題2の選択肢
             [
-                'choise' => 'grub-mkconfig -o /boot/grub/grub.cfg',
+                'choise' => 'modify',
+                'correct_answer' => '0',
+                'question_id' => '45',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'edit',
                 'correct_answer' => '1',
-                'question_id' => '35',
+                'question_id' => '45',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig /etc/default/grub -o /boot/grub/grub.cfg',
+                'choise' => 'set',
                 'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '45',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'grub-mkconfig -o /etc/default/grub /boot/grub/grub.cfg',
+                'choise' => 'monitor',
                 'correct_answer' => '0',
-                'question_id' => '35',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'grub-mkconfig -v /boot/grub/grub.cfg',
-                'correct_answer' => '0',
-                'question_id' => '35',
+                'question_id' => '45',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題3の選択肢
             [
-                'choise' => 'systemctl status all',
+                'choise' => 'echo 1 > /proc/sys/net/ipv4/ip_forward を実行する',
                 'correct_answer' => '0',
-                'question_id' => '36',
+                'question_id' => '46',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'systemctl status service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-unit-files -t service',
-                'correct_answer' => '0',
-                'question_id' => '36',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'systemctl list-units -t service',
+                'choise' => 'ip router on を実行する',
                 'correct_answer' => '1',
-                'question_id' => '36',
+                'question_id' => '46',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'sysctl net.ipv4.ip_forward=1 を実行する',
+                'correct_answer' => '0',
+                'question_id' => '46',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => '/etc/sysctl.conf に net.ipv4.ip_forward=1 を記載し、sysctl -p を実行する',
+                'correct_answer' => '0',
+                'question_id' => '46',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題4の選択肢
             [
-                'choise' => 'hostname',
-                'correct_answer' => '0',
-                'question_id' => '37',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'uname -r',
+                'choise' => 'ip',
                 'correct_answer' => '1',
-                'question_id' => '37',
+                'question_id' => '47',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'cat /etc/profile',
+                'choise' => 'ifconfig',
                 'correct_answer' => '0',
-                'question_id' => '37',
+                'question_id' => '47',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'cat /proc/version',
+                'choise' => 'route',
                 'correct_answer' => '1',
-                'question_id' => '37',
+                'question_id' => '47',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'choise' => 'netstat',
+                'correct_answer' => '1',
+                'question_id' => '47',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             //問題5の選択肢
             [
-                'choise' => 'remove qede',
-                'correct_answer' => '0',
-                'question_id' => '38',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'choise' => 'blacklist qede',
+                'choise' => 'ss',
                 'correct_answer' => '1',
-                'question_id' => '38',
+                'question_id' => '48',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'options qede',
-                'correct_answer' => '0',
-                'question_id' => '38',
+                'choise' => 'netstat',
+                'correct_answer' => '1',
+                'question_id' => '48',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'choise' => 'install qede',
+                'choise' => 'ping',
                 'correct_answer' => '0',
-                'question_id' => '38',
+                'question_id' => '48',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
-
+            [
+                'choise' => 'traceroute',
+                'correct_answer' => '0',
+                'question_id' => '48',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }
