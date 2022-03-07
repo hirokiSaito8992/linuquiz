@@ -8,6 +8,7 @@
 
 @include('layouts.error_list')
 
+
 <div class="container">
     <div class="row">
         <div class="col-7 mx-auto">

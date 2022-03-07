@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark blue-gradient">
-    <a href="{{ Auth::id() ? route('quizzes.index') : route('top') }}" class="navbar-brand"><i class="fab fa-linux fa-lg mr-1"></i>LinuQuiz</a>
+    <a href="{{ Auth::id() ? route('quizzes.index') : '' }}" class="navbar-brand"><i class="fab fa-linux fa-lg mr-1"></i>LinuQuiz</a>
     <span class="ml-2 text-white">{{ Auth::id() ? 'ようこそ   ' . Auth::user()->name . 'さん' : ''}}</span>
     <ul class="navbar-nav ml-auto">
     @guest

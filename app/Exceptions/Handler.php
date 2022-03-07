@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //二重送信対策として、CSRFのトークンがエラーを発生したときにリダイレクトを行う
+        if ($exception instanceof TokenMismatchException) {
+            return redirect('/quizzes');
+        }
+
         return parent::render($request, $exception);
     }
 }

@@ -30,7 +30,7 @@ Route::prefix('quizzes')->group(function () {
     //クイズ関係のメインルート
     Route::name('quizzes.')->group(function () {
         Route::resource('/', 'QuizController')
-            ->middleware('auth')->except(['show', 'edit', 'update', 'destroy',]);
+            ->middleware('auth')->except(['show', 'edit', 'update', 'destroy']);
         Route::get('/getindex/{id}', 'QuizAjaxController@getBlade')->middleware('auth')->name('index.ajax');
         Route::get('/getlargecate/{largecate_id}', 'QuizAjaxController@getSmallLargeSelect')->middleware('auth')->name('create_selectLargeCate.ajax');
         Route::get('/{question_id}/edit', 'QuizController@edit')->middleware('auth')->name('edit');

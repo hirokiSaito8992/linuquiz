@@ -12,7 +12,7 @@
             <h2 class="h3 card-title text-center mt-2">ログイン</h2>
 
             @include('layouts.error_list')
-
+            
             <div class="card-text">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -25,8 +25,14 @@
                         <label for="password">パスワード</label>
                         <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}" required placeholder="パスワードを入力してください">
                     </div>
-
                     <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ログイン</button>
+                </form>
+                
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <input type="hidden" name="name" id="name" value="TESTUSER">
+                    <input type="hidden" name="password" id="password" value="TESTUSER">
+                    <button class="btn btn-block btn-success mt-2 mb-2" type="submit">テストユーザでログインする</button>
                 </form>
             </div>
         </div>
