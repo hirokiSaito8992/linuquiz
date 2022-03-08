@@ -59,7 +59,8 @@ class QuizController extends Controller
         //少カテゴリー(分野)を取得する
         $all_categories = SmallCategory::all();
         //大カテゴリー(試験名)を取得する
-        $large_category = LargeCategory::where('id', $questions->category->large_categories_id)->first();
+        // $large_category = LargeCategory::where('id', $questions->category->large_categories_id)->first();
+        $large_category = LargeCategory::all();
 
         return view('contents.edit', compact('questions', 'choises', 'category', 'all_categories', 'large_category'));
     }

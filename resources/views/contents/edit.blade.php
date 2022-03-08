@@ -20,17 +20,20 @@
 
                             {{-- 順次 Linuc201 Linuc102 等の項目を増やす予定 --}}
 
+                            @foreach($large_category as $lr_cate)
+                            @if($lr_cate->id === 1 || $lr_cate->id === 2) @continue @endif
                             <div class="form-check-inline mb-0">
-                                <input type="checkbox" class="form-check-input" id="exam-subjects" name="exam-subjects" value="{{ $large_category->id }}" @if($large_category->id === 4) checked  @endif >
-                                <label class="form-check-label" for="exam-subjects">{{ $large_category->name }}</label>
+                                <input type="radio" class="form-check-input" id="exam-subjects" name="exam-subjects" value="{{ $lr_cate->id }}" >
+                                <label class="form-check-label" for="exam-subjects">{{ $lr_cate->name }}</label>
                             </div>
+                            @endforeach
 
 
                             {{-- 順次 Linuc201 Linuc102 に応じて分野名もそれに対応したものを用意する --}}
 
                             <div class="form-group">
-                                <label for="subject-field" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
-                                <select class="form-control" id="subject-field" name="subject-field" required>
+                                <label for="subjectField" class="p-1 mt-0 mb-0 font-weight-bold">分野</label>
+                                <select class="form-control" id="subjectField" name="subjectField" required>
                                     <option selected value="">何か選択してください</option>
                                     @foreach($all_categories as $small_category)
                                     <option value="{{ $small_category->id }}" @if($small_category->id === $category->id) ? selected @endif >
