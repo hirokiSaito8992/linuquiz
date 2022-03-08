@@ -23,12 +23,14 @@
                     <form id="{{ 'questionNum'.($index + 1) }}" class="chkBox">
                         @csrf
                         @foreach($value->choices_ans as $k1 => $v1)
+                        @if($v1->choise !== null)
                             <div class="form-check mb-2">
                                 <input id="{{ 'answers'.$v1->id }}" class="form-check-input checkflag" type="checkbox"  data-ansId={{$v1->id}} data-questionid={{ $v1->question_id }} name="{{ 'questionans' . $v1->question_id . '[]' }}" value="{{ $v1->correct_answer }}">
                                 <label class="form-check-label" for="{{ 'answers'.$v1->id }}">
                                     {{$v1->choise}}
                                 </label>
                             </div>
+                        @endif
                         @endforeach
                     </form>
                 </div>

@@ -6,18 +6,24 @@ $(function(){
 
     //試験科目について、一つを選んだら、その分野をAjaxで結果を取得してBladeに展開する
     //試験科目については、一つのみしか選択できないように、制限する
-    //ラジオボタンで、１科目を選択するように制限する
+    //セレクトボックスは、試験科目がチェックされたらAjaxで取得したらそれをoptionで追加していく
 
     let selectExam; //セレクトボックスで選択されたものを格納する
     let selectExamLargeCateId;
 
     //選択するチェックボックスを1つに制限する処理
     $('input[id^="exam-subjects"]').on('click',function(){
+        $('input[id^="exam-subjects"]').prop('disabled',false); //通常はdisabled設定はOFFにしておく
 
+        if($('input[id^="exam-subjects"]:checked').length > 0){ //チェックボックスが１つでも選択されたら
             if($(this).prop('checked')){
                 selectExam = $(this).prop('id');
                 selectExamLargeCateId = $(this).data('id'); //data-idの中身を取得
             }
+            $('input[id^="exam-subjects"]').each(function(i,element){
+                //選択した分野IDとループ中に分野IDが一致しなければ、非活性にしてしまう
+                !(selectExam === $(element).prop('id')) ? $(element).prop('disabled',true) : $(element).prop('disabled',false);
+            });
 
             //分野のデータを非同期で取得する
             $.ajax({
@@ -42,5 +48,6 @@ $(function(){
             }).fail(function(res){
                 console.log(res);
             });
+        }
     });
 });

@@ -22,8 +22,8 @@
                             @foreach($large_categories as $largeCategory)
                             {{-- Linuc101,102に関しては準備中のため、非表示にしておく --}}
                             @if($largeCategory->id === 1 || $largeCategory->id === 2) @continue  @endif 
-                            <div class="form-check-inline mb-0 exam_item">
-                                <input type="checkbox" class="form-check-input examTarget" data-id="{{ $largeCategory->id }}" id="exam-subjects{{ $largeCategory->id }}" name="exam-subjects[]" value="{{ $largeCategory->id }}">
+                            <div class="form-check form-check-inline mb-0 exam_item">
+                                <input type="radio" class="form-check-input examTarget" data-id="{{ $largeCategory->id }}" id="exam-subjects{{ $largeCategory->id }}" name="exam-subjects" value="{{ $largeCategory->id }}" @if($loop->iteration === 3) checked @endif>
                                 <label class="form-check-label" for="exam-subjects{{ $largeCategory->id }}">{{ $largeCategory->name }}</label>
                             </div>
                             @endforeach

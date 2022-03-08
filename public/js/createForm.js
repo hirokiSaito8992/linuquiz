@@ -17378,48 +17378,44 @@ var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
 
 $(function () {
   //試験科目について、一つを選んだら、その分野をAjaxで結果を取得してBladeに展開する
-  //セレクトボックスは、試験科目がチェックされたらAjaxで取得したらそれをoptionで追加していく
+  //試験科目については、一つのみしか選択できないように、制限する
+  //ラジオボタンで、１科目を選択するように制限する
   var selectExam; //セレクトボックスで選択されたものを格納する
 
   var selectExamLargeCateId; //選択するチェックボックスを1つに制限する処理
 
   $('input[id^="exam-subjects"]').on('click', function () {
-    $('input[id^="exam-subjects"]').prop('disabled', false); //通常はdisabled設定はOFFにしておく
+    if ($(this).prop('checked')) {
+      selectExam = $(this).prop('id');
+      selectExamLargeCateId = $(this).data('id'); //data-idの中身を取得
+    } //分野のデータを非同期で取得する
 
-    if ($('input[id^="exam-subjects"]:checked').length > 0) {
-      //チェックボックスが１つでも選択されたら
-      if ($(this).prop('checked')) {
-        selectExam = $(this).prop('id');
-        selectExamLargeCateId = $(this).data('id');
-      }
 
-      $('input[id^="exam-subjects"]').each(function (i, element) {
-        !(selectExam === $(element).prop('id')) ? $(element).prop('disabled', true) : $(element).prop('disabled', false);
+    $.ajax({
+      type: 'GET',
+      url: "/quizzes/getlargecate/".concat(selectExamLargeCateId),
+      //LargeCategoryIdを送信する必要がある
+      dataType: 'json',
+      cache: false,
+      timeout: 1000
+    }).done(function (results) {
+      var options = [];
+      $('select#subjectField option').remove(); //分野のセレクトの中身を一旦削除する
+
+      $('select#subjectField').append('<option>選択してください</option>');
+      $.each(results, function (i, value) {
+        //取得結果をもとに、HTMLに挿入するoptionタグを作成する(配列)
+        options.push("<option value=\"".concat(value.id, "\">").concat(value.name, "<option>"));
       });
-      $.ajax({
-        type: 'GET',
-        url: "/quizzes/getlargecate/".concat(selectExamLargeCateId),
-        //LargeCategoryIdを送信する必要がある
-        dataType: 'json',
-        cache: false,
-        timeout: 1000
-      }).done(function (results) {
-        // console.log(results);
-        $('select#subjectField option').remove();
-        $('select#subjectField').append('<option>選択してください</option>');
-        var options = [];
-        $.each(results, function (i, value) {
-          options.push("<option value=\"".concat(value.id, "\">").concat(value.name, "<option>")); // console.log(options);
-        });
-        $('select#subjectField').append(options);
-        $('select#subjectField option').each(function (i, val) {
-          console.log($(val).html());
-          $(val).html() == '' ? $(val).remove() : '';
-        });
-      }).fail(function (res) {
-        console.log(res);
+      $('select#subjectField').append(options); //HTMLに挿入する
+
+      $('select#subjectField option').each(function (i, val) {
+        //無駄な空白列を削除する
+        $(val).html() == '' ? $(val).remove() : '';
       });
-    }
+    }).fail(function (res) {
+      console.log(res);
+    });
   });
 });
 
