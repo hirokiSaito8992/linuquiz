@@ -23,8 +23,8 @@
                             @foreach($large_category as $lr_cate)
                             @if($lr_cate->id === 1 || $lr_cate->id === 2) @continue @endif
                             <div class="form-check-inline mb-0">
-                                <input type="radio" class="form-check-input" id="exam-subjects" name="exam-subjects" value="{{ $lr_cate->id }}" >
-                                <label class="form-check-label" for="exam-subjects">{{ $lr_cate->name }}</label>
+                                <input type="radio" class="form-check-input" id="exam-subjects{{ $lr_cate->id }}" name="exam-subjects" value="{{ $lr_cate->id }}" >
+                                <label class="form-check-label" for="exam-subjects{{ $lr_cate->id }}">{{ $lr_cate->name }}</label>
                             </div>
                             @endforeach
 
